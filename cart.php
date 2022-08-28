@@ -1,8 +1,3 @@
-<?php 
-
-session_start();
-
- ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +13,11 @@ session_start();
 	
 </head>
 <body class="brown">
-<?php include_once "header.php"; ?>
+<?php include_once "header.php"; 
+$hidden = isset($_SESSION['quantity']) ? FALSE : TRUE;
+?>
 
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:70px">
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:70px;">
 		<div class="col-md-12">
 		<h1> Your Basket </h1>
 			<table class="table table-bordered my-5 ">
@@ -74,11 +71,21 @@ session_start();
 							<td>Total Price</td>
 							<td><?php echo "£" . number_format($total_price,2); ?></td>
 							<td>
-                             	<button class="btn btn-warning clearall">Clear All</button>
+							<?php
+			if ($hidden == FALSE){
+				echo '<button class="btn btn-warning clearall">Clear All</button>';
+							};
+							?>	
                              </td>
 						</tr>
 			</table>
-			<a class="w3-round w3-button lightPink" id="checkout-btn" href="deliveryOptions.php">Confirm basket</a>
+			<?php
+			if ($hidden == FALSE){
+				$del = isset($_SESSION['isDelivery']) ? "moreDel.php" : "paymentOptions.php";
+				echo '<a class="w3-round w3-button lightPink" id="checkout-btn" href=' . $del . '>Confirm basket</a>';
+			};
+			?>
+			
 		</div>
 	</div>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -98,7 +105,7 @@ session_start();
                url:"action.php",
                data:{action:action,id:id},
                success:function(data){
-                  alert("you have Remove item with ID "+id+"");
+				window.location.reload();
                }
             });
 		});
@@ -113,7 +120,7 @@ session_start();
                url:"action.php",
                data:{action:action},
                success:function(data){
-                  alert("you have cleared all item");
+				window.location.reload();
                }
             });
         });

@@ -6,7 +6,7 @@
 
 <body class="brown">
 <?php include_once "header.php";
-$basketTotal = 0;
+
 ?>
 	
 
@@ -15,9 +15,7 @@ $basketTotal = 0;
 			<div class="row show_cart my-5">
 			</div>
 		</div>
-        <a href="cart.php" class="w3-button w3-round darkBrown w3-center">Proceed to Checkout</a>
-        <h2>Items in basket</h2>
-        <h2 id="basketTotal-el"><?php $basketTotal ?></h2>
+            <a href="cart.php" class="w3-button w3-round darkBrown w3-center">Proceed to Checkout</a>
 	    </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -50,8 +48,7 @@ $basketTotal = 0;
             url: "add_to_cart.php",
             data:{id:id,name:name,price:price,quantity:quantity},
             success:function(data){
-                const basketEl = document.getElementById("basketTotal-el").innerText;
-                basketEl.innerText  += quantity;
+                window.location.reload();
             }
          });
     });

@@ -4,6 +4,8 @@
     
     $total_price = $_SESSION['totalPrice'];
 
+    if (isset($_POST['stripeToken'])){
+        
     $token = $_POST['stripeToken'];
     $email = $_POST['stripeEmail'];
 
@@ -17,8 +19,23 @@
         "amount" => $total_price * 100,
         "currency" => "gbp"
     ]);
+    }
 
-    echo "You have paid";
+    //generate and check a order number
 
+    //select count(all orders)
+    //add one onto the end as the order id
+
+
+    if (isset($_SESSION['isDelivery'])){
+        //save delivery info
+    }
+    //save order info
+    //- loop through all the cart and add to the order table
+
+    session_destroy();
+
+    echo '<script>alert("Order Successful. Your order number is: "); window.location.href = "index.php";</script>';
     ?>
+
 </html>
