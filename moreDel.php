@@ -1,9 +1,12 @@
 <html>
     <?php include_once "config.php";
  include_once "header.php"; 
- 
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['delDet'] = array ("name" => $_POST['name'], "num" => $_POST['roomNum'], "phone" => $_POST['phone'], "post" => $_SESSION['postcode']);
+    $_SESSION['name'] = $_POST['name'];
+    $_SESSION['num'] = $_POST['roomNum'];
+    $_SESSION['phone'] = $_POST['phone'];
+    $_SESSION['post'] = $_POST['postcode'];
     header('location: paymentOptions.php');
  }
  ?>
@@ -24,6 +27,7 @@
     <button class ="w3-button w3-round lightPink" type="submit">Proceed to Order</button>
     <input type="reset"> 
 </form>
+<?php include_once "footer.php"; ?>
 </div>
 </body>
 </html>

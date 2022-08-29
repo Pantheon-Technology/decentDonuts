@@ -21,5 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button name="online" class="w3-button w3-round lightPink">Card (Online)</button>
     <button class="w3-button w3-round pink">Pay Upon Arrival</button></form>';
     ?>
+    <?php include_once "footer.php"; ?>
 </div>
 </body>

@@ -1,5 +1,6 @@
 <html>
-    <?php include_once "config.php"; 
+    <?php include_once "config.php";
+         include_once "footer.php"; 
 session_start();
 $postcodes = array('L15', 'L18', 'L17', 'L16', 'L13', 'L8', 'L7', 'L19', 'L14', 'L25', 'L6', 'L69', 'L3', 'L1', 'L71', 'L75', 'L70', 'L12', 'L74', 'L5', 'L36', 'L26', 'L27', 'L4', 'L2', 'L11');
 // Processing form data when form is submitted

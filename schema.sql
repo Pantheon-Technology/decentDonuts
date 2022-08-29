@@ -50,13 +50,15 @@ COMMIT;
 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders`(
-  `orderId` INT NOT NULL,
-  `customerName` VARCHAR(100) NOT NULL,
-  `phoneNumber` CHAR(11) NOT NULL,
-  `addressLine1` VARCHAR(100) NOT NULL,
-  `town/city` VARCHAR(100) NOT NULL,
-  `postcode` VARCHAR(100) NOT NULL,
-  `orderStatus` VARCHAR(3) NOT NULL
+  `orderId` INT(100) NOT NULL PRIMARY KEY auto_increment,
+  `customerName` VARCHAR(100) NULL,
+  `phoneNumber` CHAR(11) NULL,
+  `roomNumber` VARCHAR(100) NULL,
+  `postcode` VARCHAR(100) NULL,
+  `orderStatus` VARCHAR(3) NOT NULL,
+  `paid` BOOLEAN,
+  `isDelivery` BOOLEAN,
+  reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 DROP TABLE IF EXISTS `itemOrder`;
 CREATE TABLE IF NOT EXISTS `itemOrder`(
@@ -64,6 +66,9 @@ CREATE TABLE IF NOT EXISTS `itemOrder`(
   `donutId` INT NOT NULL,
   `quantity` INT NOT NULL
 );
+
+SELECT * FROM `orders`;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -28,5 +28,6 @@
         echo '<h1>The store is currently not open</h1>';
     }
     ?>
+    <?php include_once "footer.php"; ?>
 </div>
 </body>

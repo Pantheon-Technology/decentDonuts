@@ -6,17 +6,19 @@
 
 <body class="brown">
 <?php include_once "header.php";
-
 ?>
 	
-
+    <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:70px">
 	<div class="container">
 		<div class="col-md-12">
 			<div class="row show_cart my-5">
 			</div>
 		</div>
             <a href="cart.php" class="w3-button w3-round darkBrown w3-center">Proceed to Checkout</a>
+
 	    </div>
+        <?php include_once "footer.php"; ?>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
