@@ -1,19 +1,29 @@
 <html>
     <?php include_once "header.php";
     $open = True;
-    if (date('w') != 1 && date('w') != 2){
+    if (date('w') != 1){
         if (date('w') > 4){
             if (date('H') < 12 || date('H') > 20){
                 $open = False;
             }
         } else {
-            if (date('H') < 12 || date('H') > 17){
+            if (date('H') < 12 || date('H') > 20){
                 $open = False;
             }
         }
     } else {
         $open = False;
     };
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['pick'])){
+            $_SESSION['isDelivery'] = False;
+        header('location: order.php');
+        } else {
+            $_SESSION['isDelivery'] = True;
+        header('location: deliveryDetails.php');
+        }
+    }
     ?>
 </head>
 <body class="brown">
@@ -21,9 +31,9 @@
 <div class="w3-center">
     <?php 
     if ($open == True){
-    echo '<h1>Choose a delivery method</h1>
-    <a href="order.php" class="w3-button w3-round lightPink">Pick up in store</a>
-    <a href="deliveryDetails.php" class="w3-button w3-round pink">Deliver to my address</a>';
+    echo '<form method = "post"><h1>Choose a delivery method</h1>
+    <button class ="w3-button w3-round lightPink" name = "pick" type="submit">Pick up in store</button>
+    <button class ="w3-button w3-round lightPink" type="submit">Deliver to my address</button></form>';
     } else {
         echo '<h1>The store is currently not open</h1>';
     }

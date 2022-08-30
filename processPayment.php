@@ -5,13 +5,6 @@
     </head>
 <body class="brown">
     <?php require_once "paymentConfig.php"; session_start(); 
-    if (isset($_SESSION['isDelivery'])){
-        if ($_SESSION['quantity'] % 3 == 0) {
-            $mod = ($_SESSION['quantity'] / 3) * 0.5;
-        }
-        $deliveryCharge = $_SESSION['totalPrice'] + $mod;
-        $_SESSION['totalPrice'] = $deliveryCharge;
-    }
     $total_price = $_SESSION['totalPrice'];
     
     ?>

@@ -3,10 +3,11 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['online'])) {
-        header('location : "processPayment.php"');
+        $_SESSION['paid'] = True;
+        header('location: processPayment.php');
     } else {
         $_SESSION['paid'] = False;
-        header('location : "successfulPayment.php"');
+        header('location: successfulPayment.php');
     }
 }
     ?>
