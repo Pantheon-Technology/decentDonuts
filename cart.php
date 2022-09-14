@@ -81,7 +81,7 @@ $hidden = isset($_SESSION['quantity']) ? FALSE : TRUE;
 			</table>
 			<?php
 			if ($hidden == FALSE){
-				$del = isset($_SESSION['isDelivery']) ? "moreDel.php" : "paymentOptions.php";
+				$del = $_SESSION['isDelivery'] == True ? "moreDel.php" : "paymentOptions.php";
 				echo '<a class="w3-round w3-button lightPink" id="checkout-btn" href=' . $del . '>Confirm basket</a>';
 			};
 			?>

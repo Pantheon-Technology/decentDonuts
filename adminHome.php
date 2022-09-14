@@ -44,13 +44,25 @@ $result = $conn->query($sql);
 // if there is are more than 0 rows....
 if ($result->num_rows > 0) {
  // ....output data of each row
-  while($row = $result->fetch_assoc()) { ?>
-  <!-- formatting for output data -->
-   <?php
-    echo "<div class=" . "w3-quarter w3-animate-zoom" . ">";
-    echo "<p>" . "Customer has ordered" . $row["quantity"] . "x" . $row["donutId"];
-    echo "</div>";
+ $curId = "x";
+  while($row = $result->fetch_assoc()) {
+  // formatting for output data
+  $id = $row['orderId'];
+    if ($curId == "x"){
+      $curId = $id;
+      $printString = "Customer has ordered: " . $row["quantity"] . "x" . $row["donutId"];
+    } else {
+      if($curId != $id){
+        echo "<div class=" . "w3-quarter w3-animate-zoom" . "> <p>" . $printString . "</div>";
+        $curId = $id;
+        $printString = "Customer has ordered: " . $row["quantity"] . "x" . $row["donutId"];
+      } else {
+        $printString .= ", " . $row["quantity"] . "x" . $row["donutId"];
+      }
+    }
   }
+  echo "<div class=" . "w3-quarter w3-animate-zoom" . "> <p>" . $printString . "</div>";
+
 } else {
   //if no data in the table matched the sql query, display this message
   echo "There are no orders right now.";

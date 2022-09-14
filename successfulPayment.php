@@ -86,7 +86,28 @@ foreach ($_SESSION['cart'] as $key => $value) {
         }
     }
     mysqli_stmt_close($stmt);
+
+    $sql5 = "SELECT quantity FROM items WHERE id =" .$donutID.";";
+    $result = $conn->query($sql5);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $quantityAll = $row['quantity'];
+            $sql6 = "UPDATE items SET quantity = ? WHERE id = ?";
+            if ($stmt = mysqli_prepare($conn, $sql6)) {
+                mysqli_stmt_bind_param($stmt, "ii", $q, $i);
+                $q = $quantityAll - $quantity;
+                $i = $donutID;
+                if (!(mysqli_stmt_execute($stmt))) {
+                    echo "Error: " . $sql4 . "<br>" . $conn->error;
+                }
+            }
+            mysqli_stmt_close($stmt);
+        }
+    }
+
 }
+
+
 session_destroy();
 $conn->close();
 

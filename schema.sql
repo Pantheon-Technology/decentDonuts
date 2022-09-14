@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `name` varchar(100) NOT NULL,
   `price` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL,
+  `quantity` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -41,11 +42,11 @@ CREATE TABLE IF NOT EXISTS `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `price`, `image`) VALUES
-(1, 'Donut', '5', 'donut1.jpg'),
-(2, 'Donut', '5', 'donut2.jpg'),
-(3, 'Donut', '5', 'donut3.jpg'),
-(4, 'Donut', '5', 'donut4.jpg');
+INSERT INTO `items` (`id`, `name`, `price`, `image`, `quantity`) VALUES
+(1, 'Donut', '5', 'donut1.jpg','9'),
+(2, 'Donut', '5', 'donut2.jpg','10'),
+(3, 'Donut', '5', 'donut3.jpg','10'),
+(4, 'Donut', '5', 'donut4.jpg','10');
 COMMIT;
 
 DROP TABLE IF EXISTS `orders`;
@@ -60,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `orders`(
   `isDelivery` BOOLEAN,
   reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
 DROP TABLE IF EXISTS `itemOrder`;
 CREATE TABLE IF NOT EXISTS `itemOrder`(
   `orderId` INT NOT NULL,

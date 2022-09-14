@@ -1,13 +1,13 @@
 <html>
     <?php include_once "header.php";
     $open = True;
-    if (date('w') != 1){
+    if (date('w') != 1 || date('w') != 2){
         if (date('w') > 4){
             if (date('H') < 12 || date('H') > 20){
                 $open = False;
             }
         } else {
-            if (date('H') < 12 || date('H') > 20){
+            if (date('H') < 12 || date('H') > 17){
                 $open = False;
             }
         }
