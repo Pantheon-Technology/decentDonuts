@@ -14,8 +14,6 @@
 			<div class="row show_cart my-5">
 			</div>
 		</div>
-            <a href="cart.php" class="w3-button w3-round darkBrown w3-center">Proceed to Checkout</a>
-
 	    </div>
         <?php include_once "footer.php"; ?>
 </div>

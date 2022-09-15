@@ -98,7 +98,7 @@ foreach ($_SESSION['cart'] as $key => $value) {
                 $q = $quantityAll - $quantity;
                 $i = $donutID;
                 if (!(mysqli_stmt_execute($stmt))) {
-                    echo "Error: " . $sql4 . "<br>" . $conn->error;
+                    echo "Error: " . $sql6 . "<br>" . $conn->error;
                 }
             }
             mysqli_stmt_close($stmt);

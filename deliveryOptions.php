@@ -7,7 +7,7 @@
                 $open = False;
             }
         } else {
-            if (date('H') < 12 || date('H') > 17){
+            if (date('H') < 12 || date('H') > 20){
                 $open = False;
             }
         }

@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     $_SESSION["username"] = $username;
 
                     // Redirect user to my main web page
-                    header("location: adminHome.php");
+                    header("location: viewOrders.php");
                 } else {
                     // Password is not valid, display a generic error message
                     $error = "Invalid password.";
