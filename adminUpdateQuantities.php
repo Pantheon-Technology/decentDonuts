@@ -19,9 +19,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left lightPink" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()"
   class="w3-bar-item w3-button">Close Menu</a>
-  <a class="w3-bar-item w3-button" href="viewOrders.php">View Orders</a>
+  <a class="w3-bar-item w3-button" href="adminViewOrders.php">View Orders</a>
   <a class="w3-bar-item w3-button" href="addNewDonut.php">Add New Donut</a>
-  <a class="w3-bar-item w3-button" href="updateQuantities.php">Update Quantities</a>
+  <a class="w3-bar-item w3-button" href="adminUpdateQuantities.php">Update Quantities</a>
   <a class="w3-bar-item w3-button" href="logout.php">Logout</a>
 </nav>
 
@@ -39,39 +39,49 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 
   <!-- First Photo Grid-->
   <div class="w3-row-padding w3-padding-16 w3-center lightBrown w3-round w3-margin-top" id="food">
+  <form method="post" enctype="multipart/form-data">
   <?php
-      
-$sql = "SELECT * FROM orders INNER JOIN itemOrder ON orders.orderId = itemOrder.orderId";
+include("config.php");
+session_start();
+$table = "<table><tr><th>In Stock?</th><th>Name</th><th>Quantity</th></tr>";
+$sql = "SELECT * FROM items";
 $result = $conn->query($sql);
-// if there is are more than 0 rows....
 if ($result->num_rows > 0) {
- // ....output data of each row
- $curId = "x";
+  $_SESSION['doCount'] = $result->num_rows;
   while($row = $result->fetch_assoc()) {
-  // formatting for output data
-  $id = $row['orderId'];
-    if ($curId == "x"){
-      $curId = $id;
-      $printString = "Customer has ordered: " . $row["quantity"] . "x" . $row["donutId"];
-    } else {
-      if($curId != $id){
-        echo "<div class=" . "w3-quarter w3-animate-zoom" . "> <p>" . $printString . "</div>";
-        $curId = $id;
-        $printString = "Customer has ordered: " . $row["quantity"] . "x" . $row["donutId"];
-      } else {
-        $printString .= ", " . $row["quantity"] . "x" . $row["donutId"];
-      }
+    $object1 = '<input type="checkbox" name="checkbox'.$row['id'].'" value="checkbox_value">';
+    $object2 = "<input type='number' min = 0 name='quantity".$row['id']."' id='quantity' class='form-control' value='1'>";
+    $table .= "<tr><td>" . $object1 . "</td><td>" . $row['name'] . "</td><td>" . $object2."</td></tr>";
+  }
+}
+$table.= "</table>";
+echo $table;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  for ($i = 1; $i <= $_SESSION['doCount']; $i++){
+    $cb = "checkbox" . $i;
+    $quantity = "quantity". $i;
+    if(isset($_POST[$cb])){
+      $quant = $_POST[$quantity];
+      $sql6 = "UPDATE items SET quantity = ? WHERE id = ?";
+            if ($stmt = mysqli_prepare($conn, $sql6)) {
+                mysqli_stmt_bind_param($stmt, "ii", $q, $id);
+                $q = $quant;
+                $id = $i;
+                if (!(mysqli_stmt_execute($stmt))) {
+                    echo "Error: " . $sql6 . "<br>" . $conn->error;
+                } else {
+                  header('location: addNewDonut.php');
+                }
+            }
+            mysqli_stmt_close($stmt);
     }
   }
-  echo "<div class=" . "w3-quarter w3-animate-zoom" . "> <p>" . $printString . "</div>";
-
-} else {
-  //if no data in the table matched the sql query, display this message
-  echo "There are no orders right now.";
 }
 ?>
-  </div>
-  
+
+<button class="w3-button w3-black w3-margin-bottom" input type="submit">Update</button>
+</form>
 <!-- End page content -->
 </div>
 </body>

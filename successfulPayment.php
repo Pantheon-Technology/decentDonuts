@@ -28,7 +28,7 @@ $data = $result->fetch_assoc();
 $orderID = $data['total'] + 1;
 
 $paid = $_SESSION['paid'];
-$orderStatus = 1;
+$orderStatus = 0;
 $deliver = isset($_SESSION['isDelivery']) == TRUE ? TRUE : FALSE;
 
 if ($_SESSION['isDelivery'] == True) {

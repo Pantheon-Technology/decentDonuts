@@ -19,9 +19,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left lightPink" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()"
   class="w3-bar-item w3-button">Close Menu</a>
-  <a class="w3-bar-item w3-button" href="viewOrders.php">View Orders</a>
+  <a class="w3-bar-item w3-button" href="adminViewOrders.php">View Orders</a>
   <a class="w3-bar-item w3-button" href="addNewDonut.php">Add New Donut</a>
-  <a class="w3-bar-item w3-button" href="updateQuantities.php">Update Quantities</a>
+  <a class="w3-bar-item w3-button" href="adminUpdateQuantities.php">Update Quantities</a>
   <a class="w3-bar-item w3-button" href="logout.php">Logout</a>
 </nav>
 
